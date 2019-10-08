@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:login_flutter/CreateAccount.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,7 +8,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         hintText: "Email",
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.0)
+          borderRadius: BorderRadius.circular(6.0)
         )
       ),
     );
@@ -53,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
       style: style,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Password",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))
+        hintText: "Senha",
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(6.0))
       ),
     );
 
@@ -62,15 +62,43 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
     final loginButton = Material(
-      elevation: 115.0,
-      borderRadius: BorderRadius.circular(32.0),
+      elevation: 5.0,
+      borderRadius: BorderRadius.circular(6.0),
       color: Color(0xff01A0C7),
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          // ACTION
+        },
         child: Text(
           "Login",
+          textAlign: TextAlign.center,
+          style: style.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+      ),
+    );
+
+
+
+    final createAccount = Material(
+      elevation: 5.0,
+      borderRadius: BorderRadius.circular(6.0),
+      color: Color(0xff01A0C7),
+      child: MaterialButton(
+        minWidth: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        onPressed: () {
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => CreateAccount()),
+          );
+        },
+        child: Text(
+          "Criar conta",
           textAlign: TextAlign.center,
           style: style.copyWith(
             color: Colors.white,
@@ -85,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
+      appBar: AppBar(title: Text("Login")),
       body: Center(
         child: Container(
           color: Colors.white,
@@ -101,27 +130,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(height: 45.0),
+                SizedBox(height: 15.0),
                 emailField,
                 SizedBox(height: 25.0),
                 passwordField,
-                SizedBox(
-                  height: 35.0
-                ),
+                SizedBox(height: 35.0),
                 loginButton,
-                SizedBox(
-                  height: 15.0,)
+                SizedBox(height: 25.0,),
+                createAccount,
               ],
             ),
           ),
-        )), 
-
-
+        )
+      ), 
     );
-
   }
-
-
-
-  
 }
